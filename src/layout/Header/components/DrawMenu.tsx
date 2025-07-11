@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Button, Drawer } from "antd";
-import { MenuOutlined, HomeOutlined, CarOutlined, LogoutOutlined } from "@ant-design/icons";
+import { MenuOutlined, HomeOutlined, LogoutOutlined } from "@ant-design/icons";
+import { FaMotorcycle } from "react-icons/fa";
+
 import { Link } from "react-router-dom";
 import { useAuth } from "../../../contexts/auth/AuthContext"; // ajuste se necessário
 
@@ -14,7 +16,7 @@ const menuItems = [
   { 
     key: "/motocicletas", 
     label: "Motocicletas", 
-    icon: <CarOutlined style={{ fontSize: '18px' }} />,
+    icon: <FaMotorcycle size={18} />,
     description: "Gerenciar motocicletas"
   },
   { 
