@@ -1,27 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { Button, Drawer } from "antd";
-import { MenuOutlined } from "@ant-design/icons";
+import { MenuOutlined, HomeOutlined, CarOutlined, LogoutOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../../contexts/auth/AuthContext"; // ajuste se necessário
 
 const menuItems = [
-  { key: "/home", label: "Home" },
-  { key: "/sectors", label: "Setores" },
-  { key: "/production-lines", label: "Linhas de Produção" },
-  { key: "/equipments", label: "Equipamentos" },
-  { key: "/products", label: "Produtos" },
-  { key: "/users", label: "Usuários" },
-  { key: "/iotdevices", label: "Dispositivos IoT" },
-  { key: "/monitoring", label: "Monitoramento NANSENic" },
-  { key: "/sensor-monitoring", label: "Monitoramento NANSENsor" },
-  { key: "/loja", label: "Produtos Loja" },
-  { key: "/loja/register", label: "Cadastrar Produto" },
-  { key: "/quizzes", label: "Quizzes" },
-  { key: "/missions", label: "Missões" },
-  { key: "/dashboard", label: "Dashboard - Missões" },
-  { key: "/monitoring-dashboard", label: "Dashboard - Monitoramento" },
-  { key: "/energy-billing", label: "Faturamento" },
-  { key: "logout", label: "Sair", logout: true },
+  { 
+    key: "/home", 
+    label: "Home", 
+    icon: <HomeOutlined style={{ fontSize: '18px' }} />,
+    description: "Página principal com mapa" 
+  },
+  { 
+    key: "/motocicletas", 
+    label: "Motocicletas", 
+    icon: <CarOutlined style={{ fontSize: '18px' }} />,
+    description: "Gerenciar motocicletas"
+  },
+  { 
+    key: "logout", 
+    label: "Sair", 
+    icon: <LogoutOutlined style={{ fontSize: '18px' }} />,
+    logout: true 
+  },
 ];
 
 const DrawMenu: React.FC = () => {
@@ -39,41 +40,122 @@ const DrawMenu: React.FC = () => {
 
   return (
     <>
-      <Button onClick={() => setOpen(true)} style={{ marginLeft: 10 }}>
+      <Button 
+        onClick={() => setOpen(true)} 
+        style={{ 
+          marginLeft: 10,
+          border: 'none',
+          background: 'transparent',
+          color: 'white',
+          fontSize: '18px'
+        }}
+        type="text"
+      >
         <MenuOutlined />
       </Button>
       <Drawer
-        title="Acesso Rápido"
+        title={
+          <div style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '12px',
+            color: '#8B0015'
+          }}>
+            <MenuOutlined style={{ fontSize: '20px' }} />
+            <span style={{ fontSize: '18px', fontWeight: '600' }}>Menu</span>
+          </div>
+        }
         onClose={() => setOpen(false)}
         open={open}
-        bodyStyle={{ padding: "16px" }}
+        placement="left"
+        width={280}
+        styles={{
+          header: { 
+            borderBottom: '1px solid #f0f0f0',
+            background: '#fafafa'
+          },
+          body: { 
+            padding: "0",
+            background: '#ffffff'
+          }
+        }}
       >
-        <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+        <div style={{ display: "flex", flexDirection: "column" }}>
           {menuItems.map((item) =>
             item.logout ? (
-              <span
+              <div
                 key={item.key}
                 style={{
-                  color: "red",
-                  fontWeight: "bold",
-                  padding: "10px 0",
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px',
+                  padding: "16px 20px",
                   cursor: "pointer",
+                  borderTop: '1px solid #f0f0f0',
+                  color: "#d32f2f",
+                  background: '#fff',
+                  transition: 'all 0.2s ease'
                 }}
                 onClick={() => {
                   logout();
                   setOpen(false);
                 }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = '#ffebee';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = '#fff';
+                }}
               >
-                {item.label}
-              </span>
+                {item.icon}
+                <div>
+                  <div style={{ fontSize: '16px', fontWeight: '500' }}>
+                    {item.label}
+                  </div>
+                </div>
+              </div>
             ) : (
               <Link
                 key={item.key}
                 to={item.key}
-                style={{ padding: "10px 0", fontSize: "16px" }}
+                style={{ 
+                  textDecoration: 'none',
+                  color: 'inherit'
+                }}
                 onClick={() => setOpen(false)}
               >
-                {item.label}
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '12px',
+                    padding: "16px 20px",
+                    color: "#333",
+                    background: '#fff',
+                    transition: 'all 0.2s ease',
+                    borderBottom: '1px solid #f0f0f0'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = '#f5f5f5';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = '#fff';
+                  }}
+                >
+                  {item.icon}
+                  <div>
+                    <div style={{ fontSize: '16px', fontWeight: '500' }}>
+                      {item.label}
+                    </div>
+                    <div style={{ 
+                      fontSize: '12px', 
+                      color: '#666',
+                      marginTop: '2px'
+                    }}>
+                      {item.description}
+                    </div>
+                  </div>
+                </div>
               </Link>
             )
           )}
