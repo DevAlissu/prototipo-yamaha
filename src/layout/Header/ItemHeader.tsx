@@ -21,23 +21,25 @@ export default function ItemHeader() {
         <DrawMenu />
       </div>
 
-      <div style={{ 
-        fontSize: "24px", 
-        fontWeight: "bold", 
-        color: "#FFF",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        flex: 1,
-        marginLeft: "-15px"
-      }}>
-        <img 
-          src="/yamahamini.png" 
-          alt="Yamaha Logo" 
-          style={{ 
+      <div
+        style={{
+          fontSize: "24px",
+          fontWeight: "bold",
+          color: "#FFF",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flex: 1,
+          marginLeft: "-18px",
+        }}
+      >
+        <img
+          src="/yamahamini.png"
+          alt="Yamaha Logo"
+          style={{
             height: "35px",
-            display: "none"
-          }} 
+            display: "none",
+          }}
           className="mobile-logo"
         />
       </div>
