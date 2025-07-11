@@ -37,7 +37,8 @@ const ZoneMapModal: React.FC<ZoneMapModalProps> = ({
       open={visible}
       onCancel={onClose}
       footer={null}
-      width={1000}
+      width="95%"
+      style={{ maxWidth: '1000px' }}
       centered
       destroyOnClose
       styles={{ body: { padding: '16px' } }}
@@ -102,21 +103,42 @@ const ZoneMapModal: React.FC<ZoneMapModalProps> = ({
             <h4 style={{ margin: '0 0 8px 0', color: '#495057', fontSize: '14px' }}>Motocicleta Localizada</h4>
             
             {/* Layout em colunas */}
-            <div style={{ display: 'flex', gap: '20px', alignItems: 'flex-start' }}>
+            <div style={{ 
+              display: 'flex', 
+              gap: '20px', 
+              alignItems: 'flex-start',
+              flexWrap: 'wrap'
+            }}>
               {/* Info da Moto - Coluna 1 */}
-              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '3px' }}>
+              <div style={{ 
+                flex: 1, 
+                display: 'flex', 
+                flexDirection: 'column', 
+                gap: '3px',
+                minWidth: '140px'
+              }}>
                 <div style={{ fontSize: '12px' }}><strong>Código:</strong> {motorcycle.codigo}</div>
                 <div style={{ fontSize: '12px' }}><strong>Modelo:</strong> {motorcycle.modelo}</div>
               </div>
               
               {/* Info da Moto - Coluna 2 */}
-              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '3px' }}>
+              <div style={{ 
+                flex: 1, 
+                display: 'flex', 
+                flexDirection: 'column', 
+                gap: '3px',
+                minWidth: '140px'
+              }}>
                 <div style={{ fontSize: '12px' }}><strong>Chassi:</strong> {motorcycle.chassi}</div>
                 <div style={{ fontSize: '12px' }}><strong>Zona:</strong> {motorcycle.zona}</div>
               </div>
               
               {/* Controles IoT - Coluna 3 */}
-              <div style={{ minWidth: '180px' }}>
+              <div style={{ 
+                minWidth: '160px',
+                maxWidth: '160px',
+                flexShrink: 0
+              }}>
                 <div style={{ display: 'flex', alignItems: 'center', marginBottom: '6px' }}>
                   <span style={{ 
                     width: '8px', 
@@ -135,14 +157,18 @@ const ZoneMapModal: React.FC<ZoneMapModalProps> = ({
                   onClick={() => setIotActive(!iotActive)}
                   style={{ 
                     width: '100%', 
-                    padding: '6px 10px', 
+                    maxWidth: '160px',
+                    padding: '6px 8px', 
                     border: '1px solid #dee2e6', 
                     borderRadius: '4px', 
                     background: iotActive ? '#FF5722' : '#f8f9fa',
                     color: iotActive ? 'white' : '#495057',
                     cursor: 'pointer',
                     fontSize: '10px',
-                    transition: 'all 0.3s ease'
+                    transition: 'all 0.3s ease',
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis'
                   }}
                 >
                   {iotActive ? 'Desativar Sinalização' : 'Ativar Sinalização'}

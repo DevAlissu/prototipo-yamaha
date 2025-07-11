@@ -1,5 +1,6 @@
 import { Layout } from "antd";
 import DrawMenu from "./components/DrawMenu";
+import "./ItemHeader.css";
 
 const { Header } = Layout;
 
@@ -20,8 +21,24 @@ export default function ItemHeader() {
         <DrawMenu />
       </div>
 
-      <div style={{ fontSize: "24px", fontWeight: "bold", color: "#FFF" }}>
-        <h1></h1>
+      <div style={{ 
+        fontSize: "24px", 
+        fontWeight: "bold", 
+        color: "#FFF",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flex: 1
+      }}>
+        <img 
+          src="/src/assets/yamahamini.png" 
+          alt="Yamaha Logo" 
+          style={{ 
+            height: "35px",
+            display: "none"
+          }} 
+          className="mobile-logo"
+        />
       </div>
 
       <div>{/* Espaço reservado para ícones de usuário/notificações */}</div>
