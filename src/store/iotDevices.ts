@@ -48,7 +48,7 @@ export const useIoTDevicesStore = create<IoTDevicesState>((set) => ({
 
   addDevice: async (device: Partial<IoTDevice>) => {
     try {
-      await createIoTDevice(device);
+      await createIoTDevice(device as any);
       message.success("Dispositivo IoT cadastrado com sucesso!");
       await useIoTDevicesStore.getState().fetchDevices();
     } catch (error) {
@@ -59,7 +59,7 @@ export const useIoTDevicesStore = create<IoTDevicesState>((set) => ({
 
   editDevice: async (id: number, device: Partial<IoTDevice>) => {
     try {
-      await updateIoTDevice(id, device);
+      await updateIoTDevice(id, device as any);
       message.success("Dispositivo IoT atualizado com sucesso!");
       await useIoTDevicesStore.getState().fetchDevices();
     } catch (error) {

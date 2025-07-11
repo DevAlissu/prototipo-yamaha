@@ -19,23 +19,26 @@ const Register: React.FC = () => {
     zona: "",
   });
 
-  // Mock options para os selects
+  // Mock options para os selects - Apenas modelos Yamaha
   const modeloOptions = [
-    { value: "Honda CG 160", label: "Honda CG 160" },
     { value: "Yamaha Factor 125", label: "Yamaha Factor 125" },
-    { value: "Suzuki Burgman 125", label: "Suzuki Burgman 125" },
-    { value: "Honda PCX 150", label: "Honda PCX 150" },
     { value: "Yamaha NMAX 160", label: "Yamaha NMAX 160" },
-    { value: "Honda CB 600F", label: "Honda CB 600F" },
+    { value: "Yamaha MT-03", label: "Yamaha MT-03" },
+    { value: "Yamaha PCX 150", label: "Yamaha PCX 150" },
+    { value: "Yamaha XTZ 250", label: "Yamaha XTZ 250" },
+    { value: "Yamaha R3", label: "Yamaha R3" },
+    { value: "Yamaha FZ25", label: "Yamaha FZ25" },
+    { value: "Yamaha MT-07", label: "Yamaha MT-07" },
+    { value: "Yamaha XJ6", label: "Yamaha XJ6" },
   ];
 
   const corOptions = [
+    { value: "Azul Yamaha", label: "Azul Yamaha" },
     { value: "Vermelha", label: "Vermelha" },
-    { value: "Azul", label: "Azul" },
     { value: "Preta", label: "Preta" },
     { value: "Branca", label: "Branca" },
     { value: "Prata", label: "Prata" },
-    { value: "Verde", label: "Verde" },
+    { value: "Azul", label: "Azul" },
   ];
 
   const unidadeRastreamentoOptions = [

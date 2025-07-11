@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { message } from "antd";
 import { EnvironmentOutlined } from '@ant-design/icons';
 import StandardPageLayout from "../../components/Layout/StandardPageLayout";
-import StandardTable, { createEditAction, createDeleteAction, ActionButton } from "../../components/Table/StandardTable";
+import StandardTable, { createDeleteAction, ActionButton } from "../../components/Table/StandardTable";
 import ZoneMapModal from "../../components/ZoneMap/ZoneMapModal";
 // import { useEquipamentsTable } from "./hooks/useEquipamentsTable";
 // import { useEquipamentsStore } from "../../store/equipaments";
@@ -32,7 +32,7 @@ const Equipments: React.FC = () => {
     const version = localStorage.getItem('motocicletas_version');
     
     // Forçar atualização se não tem versão ou dados
-    if (savedMotos && version === '4.0') {
+    if (savedMotos && version === '5.0') {
       const parsedMotos = JSON.parse(savedMotos);
       // Verificar se tem campo zona
       if (parsedMotos.length > 0 && parsedMotos[0].zona !== undefined) {
@@ -42,13 +42,13 @@ const Equipments: React.FC = () => {
     }
     
     // Criar dados novos
-      // Mock data inicial
+      // Mock data inicial - Apenas motos Yamaha
       const initialData = [
         {
           id: 1,
           codigo: "MOTO001",
-          modelo: "Honda CG 160",
-          chassi: "9C2JC4010JR123456",
+          modelo: "Yamaha Factor 125",
+          chassi: "9C6KE1110JR123456",
           cor: "Vermelha",
           unidadeRastreamento: "IOT001 - LoRaWAN Tracker",
           zona: 1,
@@ -57,8 +57,8 @@ const Equipments: React.FC = () => {
         {
           id: 2,
           codigo: "MOTO002", 
-          modelo: "Yamaha Factor 125",
-          chassi: "9C6KE1110KR234567",
+          modelo: "Yamaha NMAX 160",
+          chassi: "9C6KE2220LR234567",
           cor: "Azul",
           unidadeRastreamento: "IOT002 - GPS Tracker",
           zona: 2,
@@ -67,8 +67,8 @@ const Equipments: React.FC = () => {
         {
           id: 3,
           codigo: "MOTO003",
-          modelo: "Suzuki Burgman 125",
-          chassi: "9C2NF4110LR345678", 
+          modelo: "Yamaha MT-03",
+          chassi: "9C6RF1110LR345678", 
           cor: "Preta",
           unidadeRastreamento: "IOT003 - LoRaWAN Device",
           zona: 3,
@@ -77,8 +77,8 @@ const Equipments: React.FC = () => {
         {
           id: 4,
           codigo: "MOTO004",
-          modelo: "Honda PCX 150",
-          chassi: "9C2JC5020KR789012",
+          modelo: "Yamaha PCX 150",
+          chassi: "9C6KE5020KR789012",
           cor: "Branca",
           unidadeRastreamento: "IOT004 - Bluetooth Tracker",
           zona: 4,
@@ -87,9 +87,9 @@ const Equipments: React.FC = () => {
         {
           id: 5,
           codigo: "MOTO005",
-          modelo: "Yamaha NMAX 160",
-          chassi: "9C6KE2220LR890123",
-          cor: "Prata",
+          modelo: "Yamaha XTZ 250",
+          chassi: "9C6DF2220LR890123",
+          cor: "Azul",
           unidadeRastreamento: "IOT005 - Satellite Tracker",
           zona: 5,
           posicao: { x: 935, y: 300 }
@@ -97,9 +97,9 @@ const Equipments: React.FC = () => {
         {
           id: 6,
           codigo: "MOTO006",
-          modelo: "Honda CB 600F",
-          chassi: "9C2JC6030MR901234",
-          cor: "Verde",
+          modelo: "Yamaha R3",
+          chassi: "9C6RC6030MR901234",
+          cor: "Azul Yamaha",
           unidadeRastreamento: "IOT006 - LoRaWAN Tracker",
           zona: 2,
           posicao: { x: 720, y: 150 }
@@ -107,9 +107,9 @@ const Equipments: React.FC = () => {
         {
           id: 7,
           codigo: "MOTO007",
-          modelo: "Suzuki GSX 250R",
-          chassi: "9C2NF5140NR012345",
-          cor: "Azul",
+          modelo: "Yamaha FZ25",
+          chassi: "9C6RG5140NR012345",
+          cor: "Preta",
           unidadeRastreamento: "IOT007 - GPS Tracker",
           zona: 3,
           posicao: { x: 750, y: 280 }
@@ -117,7 +117,7 @@ const Equipments: React.FC = () => {
       ];
       setMotocicletas(initialData);
       localStorage.setItem('motocicletas', JSON.stringify(initialData));
-      localStorage.setItem('motocicletas_version', '4.0');
+      localStorage.setItem('motocicletas_version', '5.0');
   }, []);
   
   const columns = [
@@ -186,7 +186,7 @@ const Equipments: React.FC = () => {
 
   const createActionButtons = (record: any) => [
     createMapAction(record),
-    createEditAction(() => navigate(`/motocicletas/edit/${record.id}`)),
+    // Edição removida - Para desenvolvimento futuro ass. alissu
     createDeleteAction(
       async () => {
         if (record.id) {
@@ -221,11 +221,13 @@ const Equipments: React.FC = () => {
         />
       </StandardPageLayout>
 
-      <ZoneMapModal
-        visible={mapModalVisible}
-        onClose={() => setMapModalVisible(false)}
-        motorcycle={selectedMotorcycle}
-      />
+      {selectedMotorcycle && (
+        <ZoneMapModal
+          visible={mapModalVisible}
+          onClose={() => setMapModalVisible(false)}
+          motorcycle={selectedMotorcycle}
+        />
+      )}
     </>
   );
 };

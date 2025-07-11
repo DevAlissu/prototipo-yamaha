@@ -241,34 +241,50 @@
   .home-container {
     flex-direction: column;
     height: auto;
+    gap: 16px;
   }
   
   .map-section {
     flex: none;
+    order: 1;
   }
   
   .chassis-list-section {
     flex: none;
     max-width: none;
+    order: 2;
   }
   
   .chassis-list {
-    max-height: 300px;
+    max-height: 400px;
   }
   
   .info-grid {
     grid-template-columns: 1fr;
   }
+
+  /* Esconder informações da motocicleta no mobile */
+  .motorcycle-info-panel {
+    display: none;
+  }
 }
 
 @media (max-width: 768px) {
   .home-container {
-    gap: 16px;
+    gap: 12px;
     padding: 0 8px;
   }
   
+  .map-section {
+    order: 1;
+  }
+  
+  .chassis-list-section {
+    order: 2;
+  }
+  
   .motorcycle-info-panel {
-    padding: 12px;
+    display: none;
   }
   
   .chassis-item {
@@ -279,5 +295,9 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .chassis-list {
+    max-height: 300px;
   }
 }

@@ -80,7 +80,7 @@ const HomePage: React.FC = () => {
                 iotActive={selectedMotorcycle ? iotStates[selectedMotorcycle.id] || false : false}
               />
               
-              {/* Informações da motocicleta selecionada */}
+              {/* Informações da motocicleta selecionada - Desktop apenas */}
               {selectedMotorcycle && (
                 <div className="motorcycle-info-panel">
                   <h3>Motocicleta Localizada</h3>
@@ -128,7 +128,7 @@ const HomePage: React.FC = () => {
               )}
             </div>
 
-            {/* Lado Direito - Lista de Chassi */}
+            {/* Lista de Chassi - Lado direito no desktop, abaixo no mobile */}
             <div className="chassis-list-section">
               <div className="chassis-list-header">
                 <h3>Lista de Motocicletas</h3>
@@ -169,7 +169,7 @@ const HomePage: React.FC = () => {
                         size="small"
                         checked={iotStates[motorcycle.id] || false}
                         onChange={(checked) => handleIotToggle(motorcycle.id, checked)}
-                        onClick={(e) => e.stopPropagation()} // Evita seleção quando clica no switch
+                        onClick={(e) => (e as any).stopPropagation?.()} // Evita seleção quando clica no switch
                       />
                     </div>
                   </div>
