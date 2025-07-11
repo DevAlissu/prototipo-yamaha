@@ -31,7 +31,7 @@ export default function ItemHeader() {
         flex: 1
       }}>
         <img 
-          src="/src/assets/yamahamini.png" 
+          src="/yamahamini.png" 
           alt="Yamaha Logo" 
           style={{ 
             height: "35px",

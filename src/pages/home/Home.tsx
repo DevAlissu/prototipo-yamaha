@@ -25,16 +25,97 @@ const HomePage: React.FC = () => {
   const [iotStates, setIotStates] = useState<{ [key: number]: boolean }>({});
   const [searchValue, setSearchValue] = useState('');
 
-  // Carrega dados do localStorage
+  // Carrega dados do localStorage ou usa dados mock
   useEffect(() => {
     const savedMotos = localStorage.getItem('motocicletas');
-    if (savedMotos) {
+    const version = localStorage.getItem('motocicletas_version');
+    
+    // Forçar atualização se não tem versão ou dados
+    if (savedMotos && version === '5.0') {
       const parsedMotos = JSON.parse(savedMotos);
-      setMotocicletas(parsedMotos);
-      // Seleciona a primeira moto por padrão
-      if (parsedMotos.length > 0) {
-        setSelectedMotorcycle(parsedMotos[0]);
+      // Verificar se tem campo zona
+      if (parsedMotos.length > 0 && parsedMotos[0].zona !== undefined) {
+        setMotocicletas(parsedMotos);
+        // Seleciona a primeira moto por padrão
+        if (parsedMotos.length > 0) {
+          setSelectedMotorcycle(parsedMotos[0]);
+        }
+        return;
       }
+    }
+    
+    // Mock data inicial - Apenas motos Yamaha
+    const initialData = [
+      {
+        id: 1,
+        codigo: "MOTO001",
+        modelo: "Yamaha Factor 125",
+        chassi: "9C6KE1110JR123456",
+        cor: "Vermelha",
+        unidadeRastreamento: "IOT001 - LoRaWAN Tracker",
+        zona: 1,
+        posicao: { x: 323, y: 595 }
+      },
+      {
+        id: 2,
+        codigo: "MOTO002",
+        modelo: "Yamaha NMAX 160",
+        chassi: "9C6KE2220LR234567",
+        cor: "Azul",
+        unidadeRastreamento: "IOT002 - LoRaWAN Tracker",
+        zona: 2,
+        posicao: { x: 784, y: 280 }
+      },
+      {
+        id: 3,
+        codigo: "MOTO003",
+        modelo: "Yamaha MT-03",
+        chassi: "9C6RF1110LR345678",
+        cor: "Preta",
+        unidadeRastreamento: "IOT003 - LoRaWAN Tracker",
+        zona: 3,
+        posicao: { x: 784, y: 445 }
+      },
+      {
+        id: 4,
+        codigo: "MOTO004",
+        modelo: "Yamaha PCX 150",
+        chassi: "9C6KE5020KR789012",
+        cor: "Branca",
+        unidadeRastreamento: "IOT004 - LoRaWAN Tracker",
+        zona: 4,
+        posicao: { x: 724, y: 580 }
+      },
+      {
+        id: 5,
+        codigo: "MOTO005",
+        modelo: "Yamaha XTZ 250",
+        chassi: "9C6DF2220LR890123",
+        cor: "Amarela",
+        unidadeRastreamento: "IOT005 - LoRaWAN Tracker",
+        zona: 3,
+        posicao: { x: 784, y: 445 }
+      },
+      {
+        id: 6,
+        codigo: "MOTO006",
+        modelo: "Yamaha R3",
+        chassi: "9C6RC6030MR901234",
+        cor: "Azul",
+        unidadeRastreamento: "IOT006 - LoRaWAN Tracker",
+        zona: 2,
+        posicao: { x: 784, y: 280 }
+      }
+    ];
+
+    // Salva no localStorage
+    localStorage.setItem('motocicletas', JSON.stringify(initialData));
+    localStorage.setItem('motocicletas_version', '5.0');
+    setMotocicletas(initialData);
+    
+    // Seleciona a primeira moto por padrão
+    if (initialData.length > 0) {
+      setSelectedMotorcycle(initialData[0]);
     }
   }, []);
 
