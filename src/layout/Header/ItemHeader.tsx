@@ -30,7 +30,7 @@ export default function ItemHeader() {
           alignItems: "center",
           justifyContent: "center",
           flex: 1,
-          marginLeft: "-24px",
+          marginLeft: "-26px",
         }}
       >
         <img
