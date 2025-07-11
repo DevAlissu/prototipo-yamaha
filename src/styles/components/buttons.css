@@ -1,0 +1,38 @@
+@import "../base/variables.css";
+
+.primary-btn {
+  background-color: var(--primary-color);
+  border: none;
+  color: rgb(255, 255, 255);
+  padding: 10px 15px;
+  border-radius: var(--border-radius);
+  transition: background 0.3s ease-in-out;
+}
+
+.primary-btn:hover {
+  background-color: var(--primary-hover);
+}
+
+.filter-btn {
+  border-bottom: 2px solid #1890ff;
+}
+
+.edit-btn {
+  background-color: var(--primary-color);
+  border: none;
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: var(--primary-hover);
+}
+
+.delete-btn {
+  background-color: var(--danger-color);
+  border: none;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #b94647;
+}

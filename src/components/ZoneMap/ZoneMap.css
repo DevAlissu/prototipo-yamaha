@@ -1,0 +1,178 @@
+.zone-map-container {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.zone-map-svg {
+  width: 100%;
+  height: auto;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.zone-highlighted {
+  animation: zone-flash 2s ease-in-out infinite;
+}
+
+@keyframes zone-flash {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.heat-circle-pulse {
+  animation: heat-pulse 2s ease-in-out infinite;
+}
+
+.heat-center-pulse {
+  animation: heat-pulse 2s ease-in-out infinite 0.5s;
+}
+
+@keyframes heat-pulse {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.signal-ring {
+  animation: signal-ring-blink 1s ease-in-out infinite;
+}
+
+@keyframes signal-ring-blink {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.motorcycle-info {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #dee2e6;
+  min-width: 200px;
+}
+
+.motorcycle-info h4 {
+  margin: 0 0 10px 0;
+  color: #495057;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.motorcycle-info p {
+  margin: 5px 0;
+  font-size: 12px;
+  color: #6c757d;
+}
+
+.motorcycle-info strong {
+  color: #495057;
+}
+
+/* IoT Controls */
+.iot-control {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #dee2e6;
+}
+
+.iot-status {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+.status-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 8px;
+  transition: all 0.3s ease;
+}
+
+.status-indicator.active {
+  background-color: #4CAF50;
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.6);
+}
+
+.status-indicator.inactive {
+  background-color: #757575;
+}
+
+.status-text {
+  font-weight: 600;
+  color: #495057;
+}
+
+.iot-toggle {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  background: #f8f9fa;
+  color: #495057;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.iot-toggle:hover {
+  background: #e9ecef;
+  border-color: #adb5bd;
+}
+
+.iot-toggle.active {
+  background: #FF5722;
+  color: white;
+  border-color: #E64A19;
+}
+
+.iot-toggle.active:hover {
+  background: #E64A19;
+}
+
+.tracking-info {
+  margin-top: 8px;
+  text-align: center;
+}
+
+.tracking-info small {
+  color: #28a745;
+  font-weight: 500;
+  font-size: 10px;
+}
+
+.legend text {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .zone-map-svg {
+    height: 400px;
+  }
+  
+  .motorcycle-info {
+    position: static;
+    margin-top: 15px;
+    width: 100%;
+  }
+}

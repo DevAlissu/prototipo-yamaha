@@ -1,0 +1,252 @@
+/* StandardPageLayout - Layout Padronizado */
+
+.standard-layout-container {
+  display: flex;
+  min-height: 100vh;
+  background: var(--color-bg-layout);
+}
+
+.standard-content-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.standard-content {
+  padding: var(--space-xl);
+  background-color: var(--color-bg-layout);
+  flex: 1;
+}
+
+/* ========== SEÇÃO DE AÇÕES ========== */
+
+.standard-actions-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+  padding: 0;
+  background: transparent;
+}
+
+.standard-actions-left {
+  display: flex;
+  gap: var(--space-md);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.standard-actions-right {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Conteúdo principal */
+.standard-main-content {
+  flex: 1;
+}
+
+/* ========== RESPONSIVIDADE ========== */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .standard-content {
+    padding: var(--space-lg);
+  }
+  
+  .standard-actions-section {
+    padding: 0;
+    gap: var(--space-md);
+  }
+  
+  .standard-actions-left {
+    gap: var(--space-sm);
+  }
+  
+  /* Campo de busca menor em tablets */
+  .standard-actions-right .ant-input-search {
+    width: 250px !important;
+  }
+  
+  /* Manter visual correto em tablets */
+  .standard-actions-right .ant-input-search .ant-input {
+    border-radius: var(--radius-md) 0 0 var(--radius-md) !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .standard-content {
+    padding: var(--space-md);
+  }
+  
+  .standard-actions-section {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-md);
+    padding: 0;
+  }
+  
+  .standard-actions-left {
+    justify-content: center;
+    gap: var(--space-sm);
+  }
+  
+  .standard-actions-right {
+    justify-content: center;
+  }
+  
+  /* Busca responsiva em mobile */
+  .standard-actions-right .ant-input-search {
+    width: 100% !important;
+    max-width: 300px;
+  }
+  
+  /* Manter visual correto em mobile */
+  .standard-actions-right .ant-input-search .ant-input {
+    border-radius: var(--radius-md) 0 0 var(--radius-md) !important;
+  }
+  
+  /* Botões de ação em mobile */
+  .standard-actions-left .ant-btn {
+    flex: 1;
+    min-width: 120px;
+  }
+}
+
+/* Mobile pequeno */
+@media (max-width: 480px) {
+  .standard-content {
+    padding: var(--space-sm);
+  }
+  
+  .standard-actions-section {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .standard-actions-left {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+  
+  /* Botões ocupam largura total em telas muito pequenas */
+  .standard-actions-left .ant-btn {
+    width: 100%;
+    min-width: auto;
+  }
+  
+  .standard-actions-right .ant-space {
+    width: 100%;
+  }
+  
+  .standard-actions-right .ant-space-item {
+    width: 100%;
+  }
+  
+  .standard-actions-right .ant-input-search {
+    width: 100% !important;
+    max-width: none;
+  }
+}
+
+/* ========== AJUSTES DE COMPONENTES ========== */
+
+/* Botões da seção de ações */
+.standard-actions-section .ant-btn {
+  transition: all var(--transition-fast);
+}
+
+.standard-actions-section .ant-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Input de busca */
+.standard-actions-section .ant-input-search {
+  transition: all var(--transition-fast);
+}
+
+.standard-actions-section .ant-input-search:hover {
+  box-shadow: var(--shadow-sm);
+}
+
+/* Correções específicas de busca já movidas para design-tokens.css */
+
+/* ========== ESTADOS ESPECIAIS ========== */
+
+/* Estado de loading */
+.standard-actions-section .ant-btn-loading {
+  pointer-events: none;
+}
+
+/* ========== ACESSIBILIDADE ========== */
+
+/* Focus states */
+.standard-actions-section .ant-btn:focus,
+.standard-actions-section .ant-input:focus,
+.standard-actions-section .ant-input-search:focus {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+}
+
+/* ========== DARK MODE PREPARATION ========== */
+
+[data-theme="dark"] .standard-layout-container {
+  background: var(--color-bg-layout);
+}
+
+[data-theme="dark"] .standard-content {
+  background-color: var(--color-bg-layout);
+}
+
+[data-theme="dark"] .standard-actions-section {
+  background: var(--color-bg-container);
+  border: 1px solid var(--color-gray-800);
+}
+
+/* ========== ANIMAÇÕES ========== */
+
+.standard-actions-section {
+  animation: slideInDown 0.3s ease-out;
+}
+
+.standard-main-content {
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ========== PRINT STYLES ========== */
+
+@media print {
+  .standard-actions-section {
+    display: none;
+  }
+  
+  .standard-content {
+    padding: 0;
+  }
+}

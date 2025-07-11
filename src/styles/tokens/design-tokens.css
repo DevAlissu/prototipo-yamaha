@@ -1,0 +1,223 @@
+/**
+ * Design Tokens - Sistema de Design Nansen
+ * Tokens globais para padronização do projeto
+ */
+
+:root {
+  /* ========== CORES ========== */
+  
+  /* Cores Primárias */
+  --color-primary-50: #fef2f2;
+  --color-primary-100: #fee2e2;
+  --color-primary-200: #fecaca;
+  --color-primary-300: #fca5a5;
+  --color-primary-400: #f87171;
+  --color-primary-500: #8B0015; /* Principal - Vermelho Yamaha (menos vibrante) */
+  --color-primary-600: #7a0012;
+  --color-primary-700: #69000f;
+  --color-primary-800: #58000c;
+  --color-primary-900: #470009;
+
+  /* Cores Semânticas */
+  --color-success-50: #f0f9f5;
+  --color-success-500: #52c41a;
+  --color-success-600: #389e0d;
+  
+  --color-warning-50: #fffbe6;
+  --color-warning-500: #faad14;
+  --color-warning-600: #d48806;
+  
+  --color-error-50: #fff2f0;
+  --color-error-500: #d75c5d;
+  --color-error-600: #cf1322;
+  
+  --color-info-50: #e6f7ff;
+  --color-info-500: #1890ff;
+  --color-info-600: #096dd9;
+
+  /* Cores Neutras */
+  --color-gray-50: #fafafa;
+  --color-gray-100: #f5f5f5;
+  --color-gray-200: #f0f0f0;
+  --color-gray-300: #d9d9d9;
+  --color-gray-400: #bfbfbf;
+  --color-gray-500: #8c8c8c;
+  --color-gray-600: #595959;
+  --color-gray-700: #434343;
+  --color-gray-800: #262626;
+  --color-gray-900: #1f1f1f;
+
+  /* Cores de Background */
+  --color-bg-layout: #f0f2f5;
+  --color-bg-container: #ffffff;
+  --color-bg-elevated: #ffffff;
+  --color-bg-mask: rgba(0, 0, 0, 0.45);
+
+  /* Cores de Texto */
+  --color-text-primary: rgba(0, 0, 0, 0.88);
+  --color-text-secondary: rgba(0, 0, 0, 0.65);
+  --color-text-tertiary: rgba(0, 0, 0, 0.45);
+  --color-text-quaternary: rgba(0, 0, 0, 0.25);
+  --color-text-white: #ffffff;
+
+  /* Cores de Border */
+  --color-border-primary: #d9d9d9;
+  --color-border-secondary: #f0f0f0;
+
+  /* ========== TIPOGRAFIA ========== */
+  
+  /* Família de Fontes */
+  --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+  --font-family-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+
+  /* Tamanhos de Fonte */
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 30px;
+  --font-size-4xl: 38px;
+
+  /* Alturas de Linha */
+  --line-height-xs: 1.2;
+  --line-height-sm: 1.4;
+  --line-height-base: 1.5;
+  --line-height-lg: 1.6;
+
+  /* Pesos de Fonte */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* ========== ESPAÇAMENTO ========== */
+  
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 20px;
+  --space-2xl: 24px;
+  --space-3xl: 32px;
+  --space-4xl: 40px;
+  --space-5xl: 48px;
+  --space-6xl: 64px;
+
+  /* ========== DIMENSÕES ========== */
+  
+  /* Larguras de Container */
+  --container-xs: 480px;
+  --container-sm: 576px;
+  --container-md: 768px;
+  --container-lg: 992px;
+  --container-xl: 1200px;
+  --container-2xl: 1400px;
+
+  /* Alturas de Componentes */
+  --height-xs: 24px;
+  --height-sm: 32px;
+  --height-md: 40px;
+  --height-lg: 48px;
+  --height-xl: 56px;
+
+  /* ========== RAIOS DE BORDA ========== */
+  
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-full: 50%;
+
+  /* ========== SOMBRAS ========== */
+  
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+  /* ========== BREAKPOINTS ========== */
+  
+  --breakpoint-xs: 480px;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-2xl: 1600px;
+
+  /* ========== Z-INDEX ========== */
+  
+  --z-dropdown: 1050;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+  --z-toast: 1080;
+
+  /* ========== TRANSIÇÕES ========== */
+  
+  --transition-fast: 0.15s ease-in-out;
+  --transition-base: 0.3s ease-in-out;
+  --transition-slow: 0.5s ease-in-out;
+
+  /* Curvas de Animação */
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========== DARK MODE (Preparação) ========== */
+[data-theme="dark"] {
+  --color-bg-layout: #141414;
+  --color-bg-container: #1f1f1f;
+  --color-bg-elevated: #262626;
+  
+  --color-text-primary: rgba(255, 255, 255, 0.85);
+  --color-text-secondary: rgba(255, 255, 255, 0.65);
+  --color-text-tertiary: rgba(255, 255, 255, 0.45);
+  --color-text-quaternary: rgba(255, 255, 255, 0.25);
+}
+
+/* ========== CORREÇÕES ESPECÍFICAS ANT DESIGN ========== */
+
+/* Corrigir problema de input duplo APENAS em Search nas páginas principais */
+.standard-actions-right .ant-input-search {
+  border: 1px solid var(--color-border-primary) !important;
+  border-radius: var(--radius-md) !important;
+  overflow: hidden !important;
+  background: white !important;
+  box-shadow: none !important;
+}
+
+.standard-actions-right .ant-input-search .ant-input-group {
+  border: none !important;
+  background: transparent !important;
+}
+
+.standard-actions-right .ant-input-search .ant-input {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  background: transparent !important;
+}
+
+.standard-actions-right .ant-input-search .ant-input:focus {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.standard-actions-right .ant-input-search .ant-input-search-button {
+  border: none !important;
+  box-shadow: none !important;
+  background: var(--color-primary-500) !important;
+  color: white !important;
+}

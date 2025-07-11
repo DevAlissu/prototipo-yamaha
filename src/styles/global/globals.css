@@ -1,0 +1,261 @@
+/* ========== GLOBAL STYLES - SISTEMA PADRONIZADO ========== */
+
+/* Layout geral - LEGADO (mantido para compatibilidade) */
+.layout-container {
+  display: flex;
+  min-height: 100vh;
+  background: var(--color-bg-layout);
+}
+
+.content-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.content {
+  padding: var(--space-xl);
+  background-color: var(--color-bg-layout);
+  flex: 1;
+}
+
+/* Seção de Ações - LEGADO (será removido gradualmente) */
+.actions-section {
+  display: flex;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+  align-items: center;
+  padding: var(--space-lg);
+  background: var(--color-bg-container);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Ações - LEGADO */
+.actions {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+}
+
+/* Wrapper para tabelas - LEGADO */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: var(--space-md);
+}
+
+/* ========== INPUTS E FORMS ========== */
+
+/* Fix para autocomplete do Chrome */
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active {
+  -webkit-text-fill-color: var(--color-text-primary) !important;
+  box-shadow: 0 0 0 1000px var(--color-bg-container) inset !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+}
+
+/* ========== CUSTOMIZAÇÕES GLOBAIS ANT DESIGN ========== */
+
+/* Primary color customization */
+.ant-btn-primary {
+  background-color: var(--color-primary-500);
+  border-color: var(--color-primary-500);
+}
+
+.ant-btn-primary:hover {
+  background-color: var(--color-primary-600);
+  border-color: var(--color-primary-600);
+}
+
+/* Form items */
+.ant-form-item-label > label {
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.ant-input,
+.ant-input-number,
+.ant-select-selector,
+.ant-picker,
+.ant-input-password {
+  border-radius: var(--radius-md);
+  border-color: var(--color-border-primary);
+}
+
+.ant-input:focus,
+.ant-input-number-focused,
+.ant-select-focused .ant-select-selector,
+.ant-picker-focused,
+.ant-input-password:focus {
+  border-color: var(--color-primary-500);
+  box-shadow: 0 0 0 2px rgba(0, 66, 129, 0.1);
+}
+
+/* Cards */
+.ant-card {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Modals */
+.ant-modal-content {
+  border-radius: var(--radius-lg);
+}
+
+/* Messages */
+.ant-message {
+  z-index: var(--z-toast);
+}
+
+/* Notifications */
+.ant-notification {
+  z-index: var(--z-toast);
+}
+
+/* ========== RESPONSIVIDADE GLOBAL ========== */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .content {
+    padding: var(--space-lg);
+  }
+  
+  .actions-section {
+    padding: var(--space-md);
+    gap: var(--space-sm);
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .content {
+    padding: var(--space-md);
+  }
+  
+  .actions-section {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-md);
+    margin: 0 calc(-1 * var(--space-md));
+    border-radius: 0;
+    padding: var(--space-md);
+  }
+  
+  .actions {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+/* Mobile pequeno */
+@media (max-width: 480px) {
+  .content {
+    padding: var(--space-sm);
+  }
+  
+  .actions-section {
+    margin: 0 calc(-1 * var(--space-sm));
+    padding: var(--space-md) var(--space-sm);
+  }
+}
+
+/* ========== UTILITY CLASSES ========== */
+
+/* Spacing utilities */
+.mt-xs { margin-top: var(--space-xs); }
+.mt-sm { margin-top: var(--space-sm); }
+.mt-md { margin-top: var(--space-md); }
+.mt-lg { margin-top: var(--space-lg); }
+.mt-xl { margin-top: var(--space-xl); }
+
+.mb-xs { margin-bottom: var(--space-xs); }
+.mb-sm { margin-bottom: var(--space-sm); }
+.mb-md { margin-bottom: var(--space-md); }
+.mb-lg { margin-bottom: var(--space-lg); }
+.mb-xl { margin-bottom: var(--space-xl); }
+
+.p-xs { padding: var(--space-xs); }
+.p-sm { padding: var(--space-sm); }
+.p-md { padding: var(--space-md); }
+.p-lg { padding: var(--space-lg); }
+.p-xl { padding: var(--space-xl); }
+
+/* Text utilities */
+.text-primary { color: var(--color-text-primary); }
+.text-secondary { color: var(--color-text-secondary); }
+.text-tertiary { color: var(--color-text-tertiary); }
+
+.font-medium { font-weight: var(--font-weight-medium); }
+.font-semibold { font-weight: var(--font-weight-semibold); }
+.font-bold { font-weight: var(--font-weight-bold); }
+
+/* Layout utilities */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+
+/* Border radius utilities */
+.rounded-sm { border-radius: var(--radius-sm); }
+.rounded-md { border-radius: var(--radius-md); }
+.rounded-lg { border-radius: var(--radius-lg); }
+.rounded-xl { border-radius: var(--radius-xl); }
+
+/* Shadow utilities */
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+
+/* ========== PRINT STYLES ========== */
+
+@media print {
+  .actions-section {
+    display: none;
+  }
+  
+  .content {
+    padding: 0;
+  }
+  
+  .ant-table-pagination {
+    display: none;
+  }
+}
+
+/* ========== ACCESSIBILITY ========== */
+
+/* Focus states */
+.ant-btn:focus,
+.ant-input:focus,
+.ant-select:focus {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .ant-table-thead > tr > th {
+    background: var(--color-text-primary);
+    color: var(--color-bg-container);
+  }
+}

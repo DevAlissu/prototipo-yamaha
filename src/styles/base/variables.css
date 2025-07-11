@@ -1,0 +1,19 @@
+/* Variáveis legadas - mantidas para compatibilidade */
+:root {
+  --primary-color: var(--color-primary-500);
+  --primary-hover: var(--color-primary-600);
+  --secondary-color: var(--color-gray-500);
+  --danger-color: var(--color-error-500);
+  --background-light: var(--color-bg-layout);
+  --background-dark: var(--color-gray-900);
+  --text-light: var(--color-text-primary);
+  --text-dark: var(--color-text-primary);
+
+  /* Fontes - mantidas para compatibilidade */
+  --font-family: var(--font-family-base);
+  --font-size-title: var(--font-size-3xl);
+  --font-size-subtitle: var(--font-size-sm);
+
+  /* Layout - mantidas para compatibilidade */
+  --border-radius: var(--radius-lg);
+}

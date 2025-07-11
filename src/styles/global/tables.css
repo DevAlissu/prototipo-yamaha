@@ -1,0 +1,239 @@
+/* ========== GLOBAL TABLE STYLES ========== */
+
+/* Container padrão para tabelas legadas */
+.table-container {
+    background: var(--color-bg-container);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    width: 100%;
+    overflow-x: auto;
+    box-shadow: var(--shadow-sm);
+}
+
+.table-header {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-lg);
+    line-height: var(--line-height-sm);
+}
+
+/* Wrapper para tabelas responsivas */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: var(--space-md);
+}
+
+/* ========== CUSTOMIZAÇÕES GLOBAIS ANT DESIGN ========== */
+
+/* Tabelas do Ant Design - estilos globais */
+.ant-table {
+  font-size: var(--font-size-sm);
+}
+
+.ant-table-thead > tr > th {
+  background: var(--color-gray-50);
+  border-bottom: 1px solid var(--color-border-primary);
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-medium);
+  padding: var(--space-md) var(--space-lg);
+  font-size: var(--font-size-sm);
+}
+
+.ant-table-tbody > tr > td {
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--color-border-secondary);
+  color: var(--color-text-primary);
+}
+
+.ant-table-tbody > tr:hover > td {
+  background: var(--color-gray-50);
+}
+
+/* Paginação */
+.ant-pagination {
+  color: var(--color-text-secondary);
+}
+
+.ant-pagination .ant-pagination-item-active {
+  border-color: var(--color-primary-500);
+  background: var(--color-primary-500);
+}
+
+.ant-pagination .ant-pagination-item-active a {
+  color: var(--color-text-white);
+}
+
+/* ========== AÇÕES DE TABELA ========== */
+
+.actions {
+    display: flex;
+    gap: var(--space-sm);
+    align-items: center;
+}
+
+/* Ações responsivas */
+.table-actions-responsive {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table-actions-desktop {
+  display: flex;
+  gap: var(--space-xs);
+  align-items: center;
+}
+
+.table-actions-mobile {
+  display: none;
+}
+
+/* ========== RESPONSIVIDADE ========== */
+
+/* Tablets */
+@media (max-width: 1024px) {
+    .table-container {
+        padding: var(--space-md);
+    }
+
+    .table-header {
+        font-size: var(--font-size-2xl);
+    }
+    
+    .ant-table-thead > tr > th,
+    .ant-table-tbody > tr > td {
+        padding: var(--space-sm) var(--space-md);
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .table-container {
+        margin: 0 calc(-1 * var(--space-lg));
+        border-radius: 0;
+        box-shadow: none;
+        border-top: 1px solid var(--color-border-secondary);
+        border-bottom: 1px solid var(--color-border-secondary);
+    }
+    
+    .table-header {
+        font-size: var(--font-size-xl);
+        padding: 0 var(--space-lg);
+    }
+    
+    .ant-table-thead > tr > th,
+    .ant-table-tbody > tr > td {
+        padding: var(--space-sm) var(--space-xs);
+        font-size: var(--font-size-xs);
+    }
+    
+    /* Ações responsivas */
+    .table-actions-desktop {
+        display: none;
+    }
+    
+    .table-actions-mobile {
+        display: flex;
+    }
+    
+    /* Botões pequenos */
+    .ant-btn-sm {
+        padding: 2px 4px;
+        font-size: 10px;
+        height: auto;
+        line-height: 1.2;
+    }
+    
+    /* Tags menores */
+    .ant-tag {
+        font-size: 10px;
+        padding: 0 4px;
+        line-height: 14px;
+    }
+    
+    /* Largura da coluna de ações fixas */
+    .ant-table-fixed-right {
+        width: 60px !important;
+    }
+}
+
+/* Mobile pequeno */
+@media (max-width: 480px) {
+    .table-container {
+        padding: var(--space-sm);
+    }
+    
+    .table-header {
+        font-size: var(--font-size-lg);
+    }
+    
+    .ant-table-tbody > tr > td,
+    .ant-table-thead > tr > th {
+        padding: var(--space-xs) 2px;
+    }
+}
+
+/* ========== SCROLLBAR PERSONALIZADA ========== */
+
+.table-container::-webkit-scrollbar,
+.table-wrapper::-webkit-scrollbar {
+  height: 6px;
+}
+
+.table-container::-webkit-scrollbar-track,
+.table-wrapper::-webkit-scrollbar-track {
+  background: var(--color-gray-100);
+  border-radius: var(--radius-sm);
+}
+
+.table-container::-webkit-scrollbar-thumb,
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: var(--color-gray-300);
+  border-radius: var(--radius-sm);
+}
+
+.table-container::-webkit-scrollbar-thumb:hover,
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gray-400);
+}
+
+/* ========== ESTADOS ESPECIAIS ========== */
+
+/* Loading */
+.ant-table-placeholder {
+  padding: var(--space-4xl) var(--space-lg);
+}
+
+/* Empty state */
+.ant-empty {
+  padding: var(--space-4xl) var(--space-lg);
+}
+
+/* ========== ACESSIBILIDADE ========== */
+
+.ant-table-tbody > tr:focus-within > td {
+  background: var(--color-primary-50);
+}
+
+/* ========== DARK MODE ========== */
+
+[data-theme="dark"] .table-container {
+  background: var(--color-bg-container);
+}
+
+[data-theme="dark"] .ant-table-thead > tr > th {
+  background: var(--color-gray-800);
+  color: var(--color-text-primary);
+  border-color: var(--color-gray-700);
+}
+
+[data-theme="dark"] .ant-table-tbody > tr > td {
+  border-color: var(--color-gray-800);
+  color: var(--color-text-primary);
+}
+
+[data-theme="dark"] .ant-table-tbody > tr:hover > td {
+  background: var(--color-gray-800);
+}

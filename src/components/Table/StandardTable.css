@@ -1,0 +1,275 @@
+/* StandardTable - Componente de Tabela Padronizada */
+
+.standard-table-container {
+  background: var(--color-bg-container);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.standard-table-header {
+  padding: var(--space-lg) var(--space-lg) var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--color-border-secondary);
+}
+
+.standard-table-title {
+  color: var(--color-text-primary);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  margin: 0 0 var(--space-xs) 0;
+  line-height: var(--line-height-sm);
+}
+
+.standard-table-subtitle {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  margin: 0;
+  line-height: var(--line-height-base);
+}
+
+.standard-table-wrapper {
+  overflow-x: auto;
+}
+
+/* ========== AÇÕES RESPONSIVAS ========== */
+
+.standard-table-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+/* Versão desktop - botões visíveis */
+.desktop-actions {
+  display: flex;
+  gap: var(--space-xs);
+  align-items: center;
+  justify-content: center;
+}
+
+/* Botões de ação apenas com ícones */
+.desktop-actions .ant-btn {
+  min-width: auto;
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.desktop-actions .ant-btn .anticon {
+  margin: 0;
+}
+
+.mobile-actions {
+  display: none;
+}
+
+/* Versão mobile - dropdown */
+@media (max-width: 768px) {
+  .desktop-actions {
+    display: none;
+  }
+  
+  .mobile-actions {
+    display: flex;
+  }
+}
+
+/* ========== CUSTOMIZAÇÃO ANT DESIGN ========== */
+
+/* Container da tabela */
+.standard-table-container .ant-table {
+  background: transparent;
+}
+
+.standard-table-container .ant-table-container {
+  border-left: none;
+  border-right: none;
+}
+
+.standard-table-container .ant-table-thead > tr > th {
+  background: var(--color-gray-50);
+  border-bottom: 1px solid var(--color-border-primary);
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-medium);
+  padding: var(--space-md) var(--space-lg);
+  text-align: center !important;
+}
+
+.standard-table-container .ant-table-tbody > tr > td {
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--color-border-secondary);
+  text-align: center !important;
+}
+
+.standard-table-container .ant-table-tbody > tr:hover > td {
+  background: var(--color-gray-50);
+}
+
+/* Paginação */
+.standard-table-container .ant-pagination {
+  padding: var(--space-lg);
+  margin: 0;
+  border-top: 1px solid var(--color-border-secondary);
+}
+
+/* ========== RESPONSIVIDADE ========== */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .standard-table-container .ant-table-thead > tr > th,
+  .standard-table-container .ant-table-tbody > tr > td {
+    padding: var(--space-sm) var(--space-md);
+  }
+  
+  .standard-table-header {
+    padding: var(--space-md);
+  }
+  
+  .standard-table-title {
+    font-size: var(--font-size-lg);
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .standard-table-container {
+    margin: 0 calc(-1 * var(--space-lg));
+    border-radius: 0;
+    box-shadow: none;
+    border-top: 1px solid var(--color-border-secondary);
+    border-bottom: 1px solid var(--color-border-secondary);
+  }
+  
+  .standard-table-header {
+    padding: var(--space-md) var(--space-lg);
+  }
+  
+  .standard-table-container .ant-table-thead > tr > th,
+  .standard-table-container .ant-table-tbody > tr > td {
+    padding: var(--space-sm) var(--space-xs);
+    font-size: var(--font-size-xs);
+  }
+  
+  .standard-table-container .ant-table-thead > tr > th {
+    font-size: var(--font-size-xs);
+  }
+  
+  /* Botões pequenos em mobile */
+  .standard-table-container .ant-btn-sm {
+    padding: 2px 4px;
+    font-size: 10px;
+    height: auto;
+    line-height: 1.2;
+  }
+  
+  /* Tags menores em mobile */
+  .standard-table-container .ant-tag {
+    font-size: 10px;
+    padding: 0 4px;
+    line-height: 14px;
+  }
+  
+  /* Largura da coluna de ações em mobile */
+  .standard-table-container .ant-table-fixed-right {
+    width: 60px !important;
+  }
+  
+  /* Paginação responsiva */
+  .standard-table-container .ant-pagination {
+    padding: var(--space-md) var(--space-lg);
+  }
+  
+  .standard-table-container .ant-pagination-options {
+    display: none !important;
+  }
+}
+
+/* Mobile pequeno */
+@media (max-width: 480px) {
+  .standard-table-container .ant-table-tbody > tr > td,
+  .standard-table-container .ant-table-thead > tr > th {
+    padding: var(--space-xs) 2px;
+  }
+  
+  .standard-table-title {
+    font-size: var(--font-size-base);
+  }
+  
+  .standard-table-subtitle {
+    font-size: var(--font-size-xs);
+  }
+}
+
+/* ========== SCROLLBAR CUSTOMIZADA ========== */
+
+.standard-table-wrapper::-webkit-scrollbar {
+  height: 6px;
+}
+
+.standard-table-wrapper::-webkit-scrollbar-track {
+  background: var(--color-gray-100);
+  border-radius: var(--radius-sm);
+}
+
+.standard-table-wrapper::-webkit-scrollbar-thumb {
+  background: var(--color-gray-300);
+  border-radius: var(--radius-sm);
+}
+
+.standard-table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gray-400);
+}
+
+/* ========== COLUNAS RESPONSIVAS ========== */
+
+/* Garantir que as colunas responsive do Antd funcionem */
+.standard-table-container .ant-table-tbody > tr > td.ant-table-cell-hide,
+.standard-table-container .ant-table-thead > tr > th.ant-table-cell-hide {
+  display: none !important;
+}
+
+/* ========== ESTADOS ESPECIAIS ========== */
+
+/* Loading state */
+.standard-table-container .ant-spin-container {
+  min-height: 200px;
+}
+
+/* Empty state */
+.standard-table-container .ant-empty {
+  padding: var(--space-4xl) var(--space-lg);
+}
+
+/* ========== ACESSIBILIDADE ========== */
+
+/* Focus states */
+.standard-table-container .ant-table-tbody > tr:focus-within > td {
+  background: var(--color-primary-50);
+}
+
+.standard-table-actions .ant-btn:focus {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+}
+
+/* ========== DARK MODE PREPARATION ========== */
+
+[data-theme="dark"] .standard-table-container {
+  background: var(--color-bg-container);
+}
+
+[data-theme="dark"] .standard-table-container .ant-table-thead > tr > th {
+  background: var(--color-gray-800);
+  color: var(--color-text-primary);
+  border-color: var(--color-gray-700);
+}
+
+[data-theme="dark"] .standard-table-container .ant-table-tbody > tr > td {
+  border-color: var(--color-gray-800);
+}
+
+[data-theme="dark"] .standard-table-container .ant-table-tbody > tr:hover > td {
+  background: var(--color-gray-800);
+}

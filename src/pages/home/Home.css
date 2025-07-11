@@ -1,0 +1,283 @@
+.home-container {
+  display: flex;
+  gap: 20px;
+  height: calc(100vh - 120px);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Seção do Mapa - Lado Esquerdo */
+.map-section {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Painel de Informações da Motocicleta */
+.motorcycle-info-panel {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 16px;
+}
+
+.motorcycle-info-panel h3 {
+  margin: 0 0 16px 0;
+  color: #495057;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.info-item {
+  font-size: 13px;
+  color: #6c757d;
+}
+
+.info-item strong {
+  color: #495057;
+}
+
+/* Controles IoT */
+.iot-control {
+  border-top: 1px solid #dee2e6;
+  padding-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.iot-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.status-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.status-indicator.active {
+  background-color: #4CAF50;
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.6);
+}
+
+.status-indicator.inactive {
+  background-color: #757575;
+}
+
+.status-text {
+  font-weight: 600;
+  color: #495057;
+}
+
+.tracking-info {
+  text-align: center;
+}
+
+.tracking-info small {
+  color: #28a745;
+  font-weight: 500;
+  font-size: 11px;
+}
+
+/* Seção da Lista - Lado Direito */
+.chassis-list-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+}
+
+.chassis-list-header {
+  margin-bottom: 16px;
+}
+
+.chassis-list-header h3 {
+  margin: 0 0 12px 0;
+  color: #495057;
+  font-size: 18px;
+  font-weight: 600;
+  border-bottom: 2px solid #dee2e6;
+  padding-bottom: 8px;
+}
+
+.chassis-search {
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.chassis-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  max-height: calc(100vh - 200px);
+  padding-right: 8px;
+}
+
+/* Customizar scrollbar */
+.chassis-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chassis-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.chassis-list::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.chassis-list::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Item da Lista de Chassi */
+.chassis-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.chassis-item:hover {
+  border-color: #81C784;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.chassis-item.selected {
+  border-color: #81C784;
+  background: #C8E6C9;
+  box-shadow: 0 2px 8px rgba(129, 199, 132, 0.3);
+}
+
+.chassis-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.chassis-main {
+  font-size: 14px;
+  color: #495057;
+}
+
+.chassis-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 12px;
+  color: #6c757d;
+}
+
+.zone-badge {
+  background: #007bff;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.chassis-iot-control {
+  margin-left: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  min-width: 80px;
+}
+
+.iot-label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 10px;
+  line-height: 1.2;
+}
+
+.iot-label > span:first-child {
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.iot-status-text {
+  font-weight: 600;
+  font-size: 9px;
+}
+
+.iot-status-text.active {
+  color: #4CAF50;
+}
+
+.iot-status-text.inactive {
+  color: #757575;
+}
+
+/* Responsividade */
+@media (max-width: 1200px) {
+  .home-container {
+    flex-direction: column;
+    height: auto;
+  }
+  
+  .map-section {
+    flex: none;
+  }
+  
+  .chassis-list-section {
+    flex: none;
+    max-width: none;
+  }
+  
+  .chassis-list {
+    max-height: 300px;
+  }
+  
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-container {
+    gap: 16px;
+    padding: 0 8px;
+  }
+  
+  .motorcycle-info-panel {
+    padding: 12px;
+  }
+  
+  .chassis-item {
+    padding: 10px;
+  }
+  
+  .chassis-details {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
