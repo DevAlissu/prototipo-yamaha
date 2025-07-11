@@ -28,7 +28,8 @@ export default function ItemHeader() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        flex: 1
+        flex: 1,
+        marginLeft: "-15px"
       }}>
         <img 
           src="/yamahamini.png" 
