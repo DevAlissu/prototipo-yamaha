@@ -52,7 +52,7 @@ const Equipments: React.FC = () => {
           cor: "Vermelha",
           unidadeRastreamento: "IOT001 - LoRaWAN Tracker",
           zona: 1,
-          posicao: { x: 95, y: 520 }
+          posicao: { x: 95, y: 515 }
         },
         {
           id: 2,

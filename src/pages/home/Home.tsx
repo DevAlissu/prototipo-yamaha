@@ -31,7 +31,7 @@ const HomePage: React.FC = () => {
     const version = localStorage.getItem('motocicletas_version');
     
     // Forçar atualização se não tem versão ou dados
-    if (savedMotos && version === '5.0') {
+    if (savedMotos && version === '5.1') {
       const parsedMotos = JSON.parse(savedMotos);
       // Verificar se tem campo zona
       if (parsedMotos.length > 0 && parsedMotos[0].zona !== undefined) {
@@ -54,7 +54,7 @@ const HomePage: React.FC = () => {
         cor: "Vermelha",
         unidadeRastreamento: "IOT001 - LoRaWAN Tracker",
         zona: 1,
-        posicao: { x: 323, y: 595 }
+        posicao: { x: 95, y: 515 }
       },
       {
         id: 2,
@@ -64,7 +64,7 @@ const HomePage: React.FC = () => {
         cor: "Azul",
         unidadeRastreamento: "IOT002 - LoRaWAN Tracker",
         zona: 2,
-        posicao: { x: 784, y: 280 }
+        posicao: { x: 695, y: 120 }
       },
       {
         id: 3,
@@ -74,7 +74,7 @@ const HomePage: React.FC = () => {
         cor: "Preta",
         unidadeRastreamento: "IOT003 - LoRaWAN Tracker",
         zona: 3,
-        posicao: { x: 784, y: 445 }
+        posicao: { x: 695, y: 330 }
       },
       {
         id: 4,
@@ -84,7 +84,7 @@ const HomePage: React.FC = () => {
         cor: "Branca",
         unidadeRastreamento: "IOT004 - LoRaWAN Tracker",
         zona: 4,
-        posicao: { x: 724, y: 580 }
+        posicao: { x: 620, y: 500 }
       },
       {
         id: 5,
@@ -94,7 +94,7 @@ const HomePage: React.FC = () => {
         cor: "Amarela",
         unidadeRastreamento: "IOT005 - LoRaWAN Tracker",
         zona: 3,
-        posicao: { x: 784, y: 445 }
+        posicao: { x: 695, y: 330 }
       },
       {
         id: 6,
@@ -104,13 +104,13 @@ const HomePage: React.FC = () => {
         cor: "Azul",
         unidadeRastreamento: "IOT006 - LoRaWAN Tracker",
         zona: 2,
-        posicao: { x: 784, y: 280 }
+        posicao: { x: 695, y: 120 }
       }
     ];
 
     // Salva no localStorage
     localStorage.setItem('motocicletas', JSON.stringify(initialData));
-    localStorage.setItem('motocicletas_version', '5.0');
+    localStorage.setItem('motocicletas_version', '5.1');
     setMotocicletas(initialData);
     
     // Seleciona a primeira moto por padrão

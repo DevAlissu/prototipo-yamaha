@@ -249,14 +249,14 @@ const ZoneMap: React.FC<ZoneMapProps> = ({
         <line x1="520" y1="430" x2="870" y2="430" stroke="#333" strokeWidth="1"/>
         <line x1="720" y1="440" x2="720" y2="560" stroke="#333" strokeWidth="1"/>
 
-        {/* Heat Map Circle (LoRaWAN Range) - Sempre ativo */}
-        {showHeatMap && (
+        {/* Heat Map Circle (LoRaWAN Range) - Apenas quando zona específica estiver destacada */}
+        {showHeatMap && highlightedZone && (
           <g className="heat-map">
             {/* Círculo externo piscando */}
             <circle
               cx={heatMapPosition.x}
               cy={heatMapPosition.y}
-              r="40"
+              r="25"
               fill="rgba(255, 87, 34, 0.2)"
               stroke="#FF5722"
               strokeWidth="2"
@@ -267,7 +267,7 @@ const ZoneMap: React.FC<ZoneMapProps> = ({
             <circle
               cx={heatMapPosition.x}
               cy={heatMapPosition.y}
-              r="25"
+              r="15"
               fill="rgba(255, 87, 34, 0.4)"
               stroke="#FF5722"
               strokeWidth="1"
@@ -278,7 +278,7 @@ const ZoneMap: React.FC<ZoneMapProps> = ({
               <circle
                 cx={heatMapPosition.x}
                 cy={heatMapPosition.y}
-                r="12"
+                r="8"
                 fill="none"
                 stroke="#FFD700"
                 strokeWidth="3"
