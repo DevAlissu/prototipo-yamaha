@@ -6,10 +6,13 @@ import ProtectedRoute from "./ProtectedRoute";
 import HomePage from "../pages/home/Home";
 import LoginPage from "../pages/login/Login";
 
-// Equipamentos
-import EquipmentsPage from "../pages/equipments/Equipments";
-import EquipmentsRegister from "../pages/equipments/equipmentsregister/Register";
-import EditEquipments from "../pages/equipments/components/EditEquipment";
+// Inspeção
+import InspecaoPage from "../pages/inspecao/Inspecao";
+import InspecaoRegister from "../pages/inspecao/InspecaoRegister";
+
+// MSIM
+import MSIMPage from "../pages/msim/MSIM";
+import MSIMRegister from "../pages/msim/MSIMRegister";
 
 export default function Routers() {
   return (
@@ -25,15 +28,15 @@ export default function Routers() {
         {/* Home */}
         <Route path="/home" element={<HomePage />} />
 
-        {/* Motocicletas */}
-        <Route path="/motocicletas" element={<EquipmentsPage />} />
-        <Route path="/motocicletas/register" element={<EquipmentsRegister />} />
-        <Route path="/motocicletas/edit/:id" element={<EditEquipments />} />
+        {/* Inspeção */}
+        <Route path="/inspecao" element={<InspecaoPage />} />
+        <Route path="/inspecao/register" element={<InspecaoRegister />} />
+        <Route path="/inspecao/edit/:id" element={<InspecaoRegister />} />
         
-        {/* Redirecionamento de equipments para motocicletas */}
-        <Route path="/equipments" element={<Navigate to="/motocicletas" replace />} />
-        <Route path="/equipments/register" element={<Navigate to="/motocicletas/register" replace />} />
-        <Route path="/equipments/edit/:id" element={<Navigate to="/motocicletas/edit/:id" replace />} />
+        {/* MSIM */}
+        <Route path="/msim" element={<MSIMPage />} />
+        <Route path="/msim/register" element={<MSIMRegister />} />
+        <Route path="/msim/edit/:id" element={<MSIMRegister />} />
 
         {/* Redirecionamentos */}
         <Route path="/" element={<Navigate to="/home" replace />} />

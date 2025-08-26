@@ -1,263 +1,286 @@
-import React, { useState, useEffect, useMemo } from "react";
-import { Layout as AntLayout, Switch, Input } from "antd";
-import { SearchOutlined } from '@ant-design/icons';
+import React, { useEffect, useState } from "react";
+import { Layout as AntLayout, Card, Row, Col, Button, Empty, Spin, Badge } from "antd";
+import { 
+  CheckCircleOutlined, 
+  CloseCircleOutlined,
+  WifiOutlined,
+  ToolOutlined
+} from '@ant-design/icons';
 import ItemHeader from "../../layout/Header/ItemHeader";
 import ItemSideBar from "../../layout/Sidebar/ItemSideBar";
-import ZoneMap from "../../components/ZoneMap/ZoneMap";
+import { useInspecaoStore } from "../../store/inspecaoStore";
 import "./Home.css";
 
 const { Content } = AntLayout;
 
-interface Motocicleta {
-  id: number;
-  codigo: string;
-  modelo: string;
-  chassi: string;
-  cor: string;
-  unidadeRastreamento: string;
-  zona: number;
-  posicao: { x: number; y: number };
-}
-
 const HomePage: React.FC = () => {
-  const [motocicletas, setMotocicletas] = useState<Motocicleta[]>([]);
-  const [selectedMotorcycle, setSelectedMotorcycle] = useState<Motocicleta | null>(null);
-  const [iotStates, setIotStates] = useState<{ [key: number]: boolean }>({});
-  const [searchValue, setSearchValue] = useState('');
-
-  // Carrega dados do localStorage ou usa dados mock
+  const { 
+    inspecoes,
+    msims,
+    initializeData,
+    marcarComoLida,
+    getTotalInspecionadas,
+    getTotalFalhas,
+    getTotalMSIMAtivos,
+    getInspecoesFalhas
+  } = useInspecaoStore();
+  
+  const [loading, setLoading] = useState(true);
+  const [falhasNaoLidas, setFalhasNaoLidas] = useState<any[]>([]);
+  
   useEffect(() => {
-    const savedMotos = localStorage.getItem('motocicletas');
-    const version = localStorage.getItem('motocicletas_version');
-    
-    // Forçar atualização se não tem versão ou dados
-    if (savedMotos && version === '5.1') {
-      const parsedMotos = JSON.parse(savedMotos);
-      // Verificar se tem campo zona
-      if (parsedMotos.length > 0 && parsedMotos[0].zona !== undefined) {
-        setMotocicletas(parsedMotos);
-        // Seleciona a primeira moto por padrão
-        if (parsedMotos.length > 0) {
-          setSelectedMotorcycle(parsedMotos[0]);
-        }
-        return;
-      }
-    }
-    
-    // Mock data inicial - Apenas motos Yamaha
-    const initialData = [
-      {
-        id: 1,
-        codigo: "MOTO001",
-        modelo: "Yamaha Factor 125",
-        chassi: "9C6KE1110JR123456",
-        cor: "Vermelha",
-        unidadeRastreamento: "IOT001 - LoRaWAN Tracker",
-        zona: 1,
-        posicao: { x: 95, y: 515 }
-      },
-      {
-        id: 2,
-        codigo: "MOTO002",
-        modelo: "Yamaha NMAX 160",
-        chassi: "9C6KE2220LR234567",
-        cor: "Azul",
-        unidadeRastreamento: "IOT002 - LoRaWAN Tracker",
-        zona: 2,
-        posicao: { x: 695, y: 120 }
-      },
-      {
-        id: 3,
-        codigo: "MOTO003",
-        modelo: "Yamaha MT-03",
-        chassi: "9C6RF1110LR345678",
-        cor: "Preta",
-        unidadeRastreamento: "IOT003 - LoRaWAN Tracker",
-        zona: 3,
-        posicao: { x: 695, y: 330 }
-      },
-      {
-        id: 4,
-        codigo: "MOTO004",
-        modelo: "Yamaha PCX 150",
-        chassi: "9C6KE5020KR789012",
-        cor: "Branca",
-        unidadeRastreamento: "IOT004 - LoRaWAN Tracker",
-        zona: 4,
-        posicao: { x: 620, y: 500 }
-      },
-      {
-        id: 5,
-        codigo: "MOTO005",
-        modelo: "Yamaha XTZ 250",
-        chassi: "9C6DF2220LR890123",
-        cor: "Amarela",
-        unidadeRastreamento: "IOT005 - LoRaWAN Tracker",
-        zona: 3,
-        posicao: { x: 695, y: 330 }
-      },
-      {
-        id: 6,
-        codigo: "MOTO006",
-        modelo: "Yamaha R3",
-        chassi: "9C6RC6030MR901234",
-        cor: "Azul",
-        unidadeRastreamento: "IOT006 - LoRaWAN Tracker",
-        zona: 2,
-        posicao: { x: 695, y: 120 }
-      }
-    ];
-
-    // Salva no localStorage
-    localStorage.setItem('motocicletas', JSON.stringify(initialData));
-    localStorage.setItem('motocicletas_version', '5.1');
-    setMotocicletas(initialData);
-    
-    // Seleciona a primeira moto por padrão
-    if (initialData.length > 0) {
-      setSelectedMotorcycle(initialData[0]);
-    }
+    initializeData();
+    setLoading(false);
   }, []);
-
-  const handleMotorcycleSelect = (motorcycle: Motocicleta) => {
-    setSelectedMotorcycle(motorcycle);
+  
+  useEffect(() => {
+    const falhas = getInspecoesFalhas().filter(i => !i.lida);
+    setFalhasNaoLidas(falhas);
+  }, [inspecoes]);
+  
+  const handleMarcarComoLida = (id: number) => {
+    marcarComoLida(id);
   };
-
-  const handleIotToggle = (motorcycleId: number, active: boolean) => {
-    setIotStates(prev => ({
-      ...prev,
-      [motorcycleId]: active
-    }));
+  
+  const metrics = [
+    {
+      title: "MSIM Ativos",
+      value: getTotalMSIMAtivos(),
+      icon: <WifiOutlined style={{ fontSize: 24, color: '#1890ff' }} />,
+      color: '#e6f7ff',
+      borderColor: '#1890ff'
+    },
+    {
+      title: "Motocicletas Inspecionadas",
+      value: getTotalInspecionadas(),
+      icon: <ToolOutlined style={{ fontSize: 24, color: '#52c41a' }} />,
+      color: '#f6ffed',
+      borderColor: '#52c41a'
+    },
+    {
+      title: "Falhas Identificadas",
+      value: getTotalFalhas(),
+      icon: <CloseCircleOutlined style={{ fontSize: 24, color: '#ff4d4f' }} />,
+      color: '#fff1f0',
+      borderColor: '#ff4d4f'
+    },
+    {
+      title: "Falhas Pendentes",
+      value: falhasNaoLidas.length,
+      icon: <Badge status="processing" />,
+      color: '#fff7e6',
+      borderColor: '#faad14'
+    }
+  ];
+  
+  const getResultColor = (resultado: string) => {
+    switch(resultado) {
+      case "Ruído de válvula":
+        return { bg: '#ff7875', text: '#fff' };
+      case "Ruído de Aperto":
+        return { bg: '#ff9c6e', text: '#fff' };
+      case "Ruído de folga":
+        return { bg: '#ffa940', text: '#fff' };
+      default:
+        return { bg: '#ff4d4f', text: '#fff' };
+    }
   };
-
-  // Filtrar motocicletas baseado na busca
-  const filteredMotocicletas = useMemo(() => {
-    if (!searchValue.trim()) return motocicletas;
-    
-    return motocicletas.filter(item =>
-      Object.values(item).some(value =>
-        String(value).toLowerCase().includes(searchValue.toLowerCase())
-      )
+  
+  if (loading) {
+    return (
+      <AntLayout style={{ height: "100vh" }}>
+        <ItemSideBar />
+        <AntLayout>
+          <ItemHeader />
+          <Content style={{ 
+            display: 'flex', 
+            justifyContent: 'center', 
+            alignItems: 'center' 
+          }}>
+            <Spin size="large" />
+          </Content>
+        </AntLayout>
+      </AntLayout>
     );
-  }, [motocicletas, searchValue]);
-
+  }
+  
   return (
-    <AntLayout style={{ height: "100vh", overflow: "hidden" }}>
+    <AntLayout style={{ height: "100vh" }}>
       <ItemSideBar />
       <AntLayout>
         <ItemHeader />
         <Content style={{ 
-          padding: 16, 
-          height: "100%", 
-          overflowY: "auto"
+          padding: 24, 
+          overflowY: "auto",
+          background: '#f0f2f5'
         }}>
-          <div className="home-container">
-            {/* Lado Esquerdo - Mapa */}
-            <div className="map-section">
-              <ZoneMap
-                highlightedZone={selectedMotorcycle?.zona}
-                showHeatMap={!!selectedMotorcycle}
-                heatMapPosition={selectedMotorcycle?.posicao || { x: 400, y: 300 }}
-                iotActive={selectedMotorcycle ? iotStates[selectedMotorcycle.id] || false : false}
+          {/* Métricas */}
+          <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>
+            {metrics.map((metric, index) => (
+              <Col xs={24} sm={12} lg={6} key={index}>
+                <Card
+                  style={{ 
+                    background: metric.color,
+                    borderLeft: `4px solid ${metric.borderColor}`,
+                    height: '100%'
+                  }}
+                  bodyStyle={{ 
+                    display: 'flex', 
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    padding: '20px'
+                  }}
+                >
+                  <div>
+                    <div style={{ 
+                      fontSize: 14, 
+                      color: '#666',
+                      marginBottom: 8
+                    }}>
+                      {metric.title}
+                    </div>
+                    <div style={{ 
+                      fontSize: 32, 
+                      fontWeight: 'bold',
+                      color: metric.borderColor
+                    }}>
+                      {metric.value}
+                    </div>
+                  </div>
+                  <div>{metric.icon}</div>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+          
+          {/* Título da seção */}
+          <div style={{ 
+            marginBottom: 16,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 8
+          }}>
+            <h2 style={{ margin: 0 }}>Inspeções com Falhas</h2>
+            {falhasNaoLidas.length > 0 && (
+              <Badge 
+                count={falhasNaoLidas.length} 
+                style={{ backgroundColor: '#ff4d4f' }}
               />
-              
-              {/* Informações da motocicleta selecionada - Desktop apenas */}
-              {selectedMotorcycle && (
-                <div className="motorcycle-info-panel">
-                  <h3>Motocicleta Localizada</h3>
-                  
-                  <div className="info-grid">
-                    <div className="info-item">
-                      <strong>Código:</strong> {selectedMotorcycle.codigo}
-                    </div>
-                    <div className="info-item">
-                      <strong>Modelo:</strong> {selectedMotorcycle.modelo}
-                    </div>
-                    <div className="info-item">
-                      <strong>Chassi:</strong> {selectedMotorcycle.chassi}
-                    </div>
-                    <div className="info-item">
-                      <strong>Cor:</strong> {selectedMotorcycle.cor}
-                    </div>
-                    <div className="info-item">
-                      <strong>Zona:</strong> {selectedMotorcycle.zona}
-                    </div>
-                    <div className="info-item">
-                      <strong>Rastreamento:</strong> {selectedMotorcycle.unidadeRastreamento}
-                    </div>
-                  </div>
-
-                  {/* Controle de Sinalização */}
-                  <div className="iot-control">
-                    <div className="iot-status">
-                      <span className={`status-indicator ${iotStates[selectedMotorcycle.id] ? 'active' : 'inactive'}`}></span>
-                      <span className="status-text">
-                        Sinalização: {iotStates[selectedMotorcycle.id] ? 'ATIVO' : 'INATIVO'}
-                      </span>
-                    </div>
-                    <Switch 
-                      checked={iotStates[selectedMotorcycle.id] || false}
-                      onChange={(checked) => handleIotToggle(selectedMotorcycle.id, checked)}
-                      checkedChildren="ATIVO"
-                      unCheckedChildren="INATIVO"
-                    />
-                    <div className="tracking-info">
-                      <small>Rastreamento sempre ativo</small>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Lista de Chassi - Lado direito no desktop, abaixo no mobile */}
-            <div className="chassis-list-section">
-              <div className="chassis-list-header">
-                <h3>Lista de Motocicletas</h3>
-                <Input
-                  placeholder="Buscar motocicleta..."
-                  prefix={<SearchOutlined />}
-                  value={searchValue}
-                  onChange={(e) => setSearchValue(e.target.value)}
-                  className="chassis-search"
-                />
-              </div>
-              <div className="chassis-list">
-                {filteredMotocicletas.map((motorcycle) => (
-                  <div 
-                    key={motorcycle.id}
-                    className={`chassis-item ${selectedMotorcycle?.id === motorcycle.id ? 'selected' : ''}`}
-                    onClick={() => handleMotorcycleSelect(motorcycle)}
-                  >
-                    <div className="chassis-info">
-                      <div className="chassis-main">
-                        <strong>{motorcycle.chassi}</strong>
-                      </div>
-                      <div className="chassis-details">
-                        <span>{motorcycle.codigo} - {motorcycle.modelo}</span>
-                        <span className="zone-badge">Zona {motorcycle.zona}</span>
-                      </div>
-                    </div>
-                    
-                    {/* Switch individual na lista */}
-                    <div className="chassis-iot-control">
-                      <div className="iot-label">
-                        <span>Sinalização</span>
-                        <span className={`iot-status-text ${iotStates[motorcycle.id] ? 'active' : 'inactive'}`}>
-                          {iotStates[motorcycle.id] ? 'ATIVO' : 'INATIVO'}
-                        </span>
-                      </div>
-                      <Switch 
-                        size="small"
-                        checked={iotStates[motorcycle.id] || false}
-                        onChange={(checked) => handleIotToggle(motorcycle.id, checked)}
-                        onClick={(e) => (e as any).stopPropagation?.()} // Evita seleção quando clica no switch
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            )}
           </div>
+          
+          {/* Cards de Inspeções com Falhas */}
+          {falhasNaoLidas.length === 0 ? (
+            <Card>
+              <Empty 
+                description="Nenhuma falha pendente de leitura"
+                image={Empty.PRESENTED_IMAGE_SIMPLE}
+              />
+            </Card>
+          ) : (
+            <Row gutter={[16, 16]}>
+              {falhasNaoLidas.map((inspecao) => {
+                const msim = msims.find(m => m.codigo === inspecao.msimCodigo);
+                const colors = getResultColor(inspecao.resultado);
+                
+                return (
+                  <Col xs={24} sm={12} lg={8} xl={6} key={inspecao.id}>
+                    <Card
+                      hoverable
+                      style={{ 
+                        height: '100%',
+                        borderTop: `3px solid ${colors.bg}`
+                      }}
+                      bodyStyle={{ 
+                        display: 'flex', 
+                        flexDirection: 'column',
+                        height: '100%'
+                      }}
+                    >
+                      <div style={{ flex: 1 }}>
+                        {/* Header do Card */}
+                        <div style={{ 
+                          marginBottom: 16,
+                          paddingBottom: 12,
+                          borderBottom: '1px solid #f0f0f0'
+                        }}>
+                          <div style={{ 
+                            fontSize: 16, 
+                            fontWeight: 'bold',
+                            marginBottom: 4
+                          }}>
+                            {inspecao.modeloMoto}
+                          </div>
+                          <div style={{ 
+                            fontSize: 12, 
+                            color: '#999'
+                          }}>
+                            {inspecao.periodo}
+                          </div>
+                        </div>
+                        
+                        {/* Resultado */}
+                        <div style={{ marginBottom: 12 }}>
+                          <div style={{ 
+                            fontSize: 12, 
+                            color: '#666',
+                            marginBottom: 4
+                          }}>
+                            Resultado:
+                          </div>
+                          <div style={{ 
+                            padding: '4px 8px',
+                            background: colors.bg,
+                            color: colors.text,
+                            borderRadius: 4,
+                            fontSize: 12,
+                            fontWeight: 'bold',
+                            display: 'inline-block'
+                          }}>
+                            {inspecao.resultado}
+                          </div>
+                        </div>
+                        
+                        {/* MSIM */}
+                        <div style={{ marginBottom: 12 }}>
+                          <div style={{ 
+                            fontSize: 12, 
+                            color: '#666',
+                            marginBottom: 4
+                          }}>
+                            Dispositivo MSIM:
+                          </div>
+                          <div style={{ fontSize: 14 }}>
+                            <strong>{inspecao.msimCodigo}</strong>
+                            {msim && (
+                              <div style={{ 
+                                fontSize: 11, 
+                                color: '#999',
+                                marginTop: 2
+                              }}>
+                                {msim.nome}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Botão */}
+                      <Button
+                        type="primary"
+                        block
+                        icon={<CheckCircleOutlined />}
+                        onClick={() => handleMarcarComoLida(inspecao.id)}
+                        style={{ marginTop: 'auto' }}
+                      >
+                        Marcar como Lido
+                      </Button>
+                    </Card>
+                  </Col>
+                );
+              })}
+            </Row>
+          )}
         </Content>
       </AntLayout>
     </AntLayout>

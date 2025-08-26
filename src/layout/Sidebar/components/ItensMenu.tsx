@@ -6,7 +6,8 @@ import { useAuth } from "../../../contexts/auth/AuthContext";
 
 // Ícones
 import HomeIcon from "@mui/icons-material/Home";
-import BuildIcon from "@mui/icons-material/Build";
+import AssignmentIcon from "@mui/icons-material/Assignment";
+import MemoryIcon from "@mui/icons-material/Memory";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 
 const ItensMenu: React.FC = () => {
@@ -22,10 +23,16 @@ const ItensMenu: React.FC = () => {
       onClick: () => navigate("/home"),
     },
     {
-      key: "/motocicletas",
-      icon: <BuildIcon fontSize="small" />,
-      label: "Motocicletas",
-      onClick: () => navigate("/motocicletas"),
+      key: "/inspecao",
+      icon: <AssignmentIcon fontSize="small" />,
+      label: "Inspeção",
+      onClick: () => navigate("/inspecao"),
+    },
+    {
+      key: "/msim",
+      icon: <MemoryIcon fontSize="small" />,
+      label: "MSIM",
+      onClick: () => navigate("/msim"),
     },
     { key: "divider", type: "divider" },
     {
