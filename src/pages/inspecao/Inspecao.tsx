@@ -112,17 +112,34 @@ const Inspecao: React.FC = () => {
       >
         <style>
           {`
-            .row-success {
+            .row-success td {
               background-color: #e8f5e9 !important;
             }
             .row-success:hover td {
               background-color: #c8e6c9 !important;
             }
-            .row-error {
+            .row-error td {
               background-color: #ffebee !important;
             }
             .row-error:hover td {
               background-color: #ffcdd2 !important;
+            }
+            /* Garantir que os botões de ação também tenham a cor de fundo */
+            .row-success td .standard-table-actions {
+              background: transparent;
+            }
+            .row-error td .standard-table-actions {
+              background: transparent;
+            }
+            /* Garantir que os botões dentro das ações mantenham cor transparente */
+            .row-success .standard-table-actions .ant-btn,
+            .row-error .standard-table-actions .ant-btn {
+              background: transparent !important;
+              border: 1px solid rgba(0,0,0,0.15);
+            }
+            .row-success .standard-table-actions .ant-btn:hover,
+            .row-error .standard-table-actions .ant-btn:hover {
+              background: rgba(255,255,255,0.2) !important;
             }
           `}
         </style>
