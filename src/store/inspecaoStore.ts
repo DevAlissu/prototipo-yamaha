@@ -389,6 +389,17 @@ export const useInspecaoStore = create<InspecaoStore>((set, get) => ({
   initializeData: () => {
     const savedInspecoes = localStorage.getItem('inspecoes');
     const savedMSIMs = localStorage.getItem('msims');
+    const dataVersion = localStorage.getItem('inspecao_data_version');
+    const currentVersion = '2.0'; // Versão atualizada para forçar limpeza do PCX
+    
+    // Se não tem versão ou versão está desatualizada, força atualização
+    if (!dataVersion || dataVersion !== currentVersion) {
+      localStorage.setItem('inspecoes', JSON.stringify(mockInspecoes));
+      localStorage.setItem('msims', JSON.stringify(mockMSIMs));
+      localStorage.setItem('inspecao_data_version', currentVersion);
+      set({ inspecoes: mockInspecoes, msims: mockMSIMs });
+      return;
+    }
     
     if (savedInspecoes) {
       set({ inspecoes: JSON.parse(savedInspecoes) });

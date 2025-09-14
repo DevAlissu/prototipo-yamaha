@@ -32,7 +32,7 @@ const Equipments: React.FC = () => {
     const version = localStorage.getItem('motocicletas_version');
     
     // Forçar atualização se não tem versão ou dados
-    if (savedMotos && version === '5.0') {
+    if (savedMotos && version === '6.0') {
       const parsedMotos = JSON.parse(savedMotos);
       // Verificar se tem campo zona
       if (parsedMotos.length > 0 && parsedMotos[0].zona !== undefined) {
@@ -117,7 +117,7 @@ const Equipments: React.FC = () => {
       ];
       setMotocicletas(initialData);
       localStorage.setItem('motocicletas', JSON.stringify(initialData));
-      localStorage.setItem('motocicletas_version', '5.0');
+      localStorage.setItem('motocicletas_version', '6.0');
   }, []);
   
   const columns = [
