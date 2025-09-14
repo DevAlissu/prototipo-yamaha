@@ -24,7 +24,7 @@ const Register: React.FC = () => {
     { value: "Yamaha Factor 125", label: "Yamaha Factor 125" },
     { value: "Yamaha NMAX 160", label: "Yamaha NMAX 160" },
     { value: "Yamaha MT-03", label: "Yamaha MT-03" },
-    { value: "Yamaha PCX 150", label: "Yamaha PCX 150" },
+    { value: "Yamaha Aerox 155", label: "Yamaha Aerox 155" },
     { value: "Yamaha XTZ 250", label: "Yamaha XTZ 250" },
     { value: "Yamaha R3", label: "Yamaha R3" },
     { value: "Yamaha FZ25", label: "Yamaha FZ25" },

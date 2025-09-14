@@ -45,7 +45,7 @@ const InspecaoRegister: React.FC = () => {
     "Yamaha Factor 125",
     "Yamaha NMAX 160",
     "Yamaha MT-03",
-    "Yamaha PCX 150",
+    "Yamaha Aerox 155",
     "Yamaha XTZ 250",
     "Yamaha R3",
     "Yamaha FZ25",

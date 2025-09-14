@@ -77,7 +77,7 @@ const Equipments: React.FC = () => {
         {
           id: 4,
           codigo: "MOTO004",
-          modelo: "Yamaha PCX 150",
+          modelo: "Yamaha Aerox 155",
           chassi: "9C6KE5020KR789012",
           cor: "Branca",
           unidadeRastreamento: "IOT004 - Bluetooth Tracker",
