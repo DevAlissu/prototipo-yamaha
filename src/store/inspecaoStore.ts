@@ -28,62 +28,208 @@ interface InspecaoStore {
   initializeData: () => void;
 }
 
-// Dados mockados iniciais
+// Dados mockados iniciais - 10 falhas + proporcionais com sucesso
 const mockInspecoes: Inspecao[] = [
+  // Falhas (10 inspeções com problemas)
   {
     id: 1,
-    periodo: "25/08/2025 08:30",
-    modeloMoto: "Yamaha Factor 125",
-    resultado: "Motocicleta com ruído aceitável",
-    msimCodigo: "MSIM001",
-    lida: true
-  },
-  {
-    id: 2,
-    periodo: "25/08/2025 09:15",
+    periodo: "26/08/2025 08:00",
     modeloMoto: "Yamaha NMAX 160",
     resultado: "Ruído de válvula",
     msimCodigo: "MSIM002",
     lida: false
   },
   {
-    id: 3,
-    periodo: "25/08/2025 10:00",
+    id: 2,
+    periodo: "26/08/2025 08:30",
     modeloMoto: "Yamaha MT-03",
     resultado: "Ruído de Aperto",
     msimCodigo: "MSIM003",
     lida: false
   },
   {
-    id: 4,
-    periodo: "25/08/2025 10:45",
-    modeloMoto: "Yamaha PCX 150",
-    resultado: "Motocicleta com ruído aceitável",
-    msimCodigo: "MSIM004",
-    lida: true
-  },
-  {
-    id: 5,
-    periodo: "25/08/2025 11:30",
+    id: 3,
+    periodo: "26/08/2025 09:00",
     modeloMoto: "Yamaha XTZ 250",
     resultado: "Ruído de folga",
     msimCodigo: "MSIM005",
     lida: false
   },
   {
-    id: 6,
-    periodo: "25/08/2025 14:00",
-    modeloMoto: "Yamaha R3",
-    resultado: "Motocicleta com ruído aceitável",
-    msimCodigo: "MSIM001",
-    lida: true
-  },
-  {
-    id: 7,
-    periodo: "25/08/2025 14:45",
+    id: 4,
+    periodo: "26/08/2025 09:30",
     modeloMoto: "Yamaha FZ25",
     resultado: "Ruído de válvula",
     msimCodigo: "MSIM002",
+    lida: false
+  },
+  {
+    id: 5,
+    periodo: "26/08/2025 10:00",
+    modeloMoto: "Yamaha Factor 125",
+    resultado: "Ruído de Aperto",
+    msimCodigo: "MSIM001",
+    lida: false
+  },
+  {
+    id: 6,
+    periodo: "26/08/2025 10:30",
+    modeloMoto: "Yamaha R3",
+    resultado: "Ruído de folga",
+    msimCodigo: "MSIM001",
+    lida: false
+  },
+  {
+    id: 7,
+    periodo: "26/08/2025 11:00",
+    modeloMoto: "Yamaha Aerox 155",
+    resultado: "Ruído de válvula",
+    msimCodigo: "MSIM004",
+    lida: false
+  },
+  {
+    id: 8,
+    periodo: "26/08/2025 11:30",
+    modeloMoto: "Yamaha YBR 125",
+    resultado: "Ruído de Aperto",
+    msimCodigo: "MSIM006",
+    lida: false
+  },
+  {
+    id: 9,
+    periodo: "26/08/2025 12:00",
+    modeloMoto: "Yamaha Fazer 250",
+    resultado: "Ruído de folga",
+    msimCodigo: "MSIM007",
+    lida: false
+  },
+  {
+    id: 10,
+    periodo: "26/08/2025 12:30",
+    modeloMoto: "Yamaha Crosser 150",
+    resultado: "Ruído de válvula",
+    msimCodigo: "MSIM008",
+    lida: false
+  },
+  // Sucessos (15 inspeções sem problemas - proporcional)
+  {
+    id: 11,
+    periodo: "26/08/2025 13:00",
+    modeloMoto: "Yamaha Factor 125",
+    resultado: "Motocicleta com ruído aceitável",
+    msimCodigo: "MSIM001",
+    lida: false
+  },
+  {
+    id: 12,
+    periodo: "26/08/2025 13:30",
+    modeloMoto: "Yamaha NMAX 160",
+    resultado: "Motocicleta com ruído aceitável",
+    msimCodigo: "MSIM002",
+    lida: false
+  },
+  {
+    id: 13,
+    periodo: "26/08/2025 14:00",
+    modeloMoto: "Yamaha MT-03",
+    resultado: "Motocicleta com ruído aceitável",
+    msimCodigo: "MSIM003",
+    lida: false
+  },
+  {
+    id: 14,
+    periodo: "26/08/2025 14:30",
+    modeloMoto: "Yamaha Aerox 155",
+    resultado: "Motocicleta com ruído aceitável",
+    msimCodigo: "MSIM004",
+    lida: false
+  },
+  {
+    id: 15,
+    periodo: "26/08/2025 15:00",
+    modeloMoto: "Yamaha XTZ 250",
+    resultado: "Motocicleta com ruído aceitável",
+    msimCodigo: "MSIM005",
+    lida: false
+  },
+  {
+    id: 16,
+    periodo: "26/08/2025 15:30",
+    modeloMoto: "Yamaha R3",
+    resultado: "Motocicleta com ruído aceitável",
+    msimCodigo: "MSIM001",
+    lida: false
+  },
+  {
+    id: 17,
+    periodo: "26/08/2025 16:00",
+    modeloMoto: "Yamaha FZ25",
+    resultado: "Motocicleta com ruído aceitável",
+    msimCodigo: "MSIM002",
+    lida: false
+  },
+  {
+    id: 18,
+    periodo: "26/08/2025 16:30",
+    modeloMoto: "Yamaha YBR 125",
+    resultado: "Motocicleta com ruído aceitável",
+    msimCodigo: "MSIM006",
+    lida: false
+  },
+  {
+    id: 19,
+    periodo: "26/08/2025 17:00",
+    modeloMoto: "Yamaha Fazer 250",
+    resultado: "Motocicleta com ruído aceitável",
+    msimCodigo: "MSIM007",
+    lida: false
+  },
+  {
+    id: 20,
+    periodo: "26/08/2025 17:30",
+    modeloMoto: "Yamaha Crosser 150",
+    resultado: "Motocicleta com ruído aceitável",
+    msimCodigo: "MSIM008",
+    lida: false
+  },
+  {
+    id: 21,
+    periodo: "25/08/2025 08:00",
+    modeloMoto: "Yamaha Factor 125",
+    resultado: "Motocicleta com ruído aceitável",
+    msimCodigo: "MSIM001",
+    lida: false
+  },
+  {
+    id: 22,
+    periodo: "25/08/2025 09:00",
+    modeloMoto: "Yamaha NMAX 160",
+    resultado: "Motocicleta com ruído aceitável",
+    msimCodigo: "MSIM002",
+    lida: false
+  },
+  {
+    id: 23,
+    periodo: "25/08/2025 10:00",
+    modeloMoto: "Yamaha MT-03",
+    resultado: "Motocicleta com ruído aceitável",
+    msimCodigo: "MSIM003",
+    lida: false
+  },
+  {
+    id: 24,
+    periodo: "25/08/2025 11:00",
+    modeloMoto: "Yamaha Aerox 155",
+    resultado: "Motocicleta com ruído aceitável",
+    msimCodigo: "MSIM004",
+    lida: false
+  },
+  {
+    id: 25,
+    periodo: "25/08/2025 14:00",
+    modeloMoto: "Yamaha XTZ 250",
+    resultado: "Motocicleta com ruído aceitável",
+    msimCodigo: "MSIM005",
     lida: false
   }
 ];
@@ -112,10 +258,10 @@ const mockMSIMs: MSIM[] = [
   },
   {
     id: 4,
-    nome: "Sensor IA PCX",
-    modeloIA: "Yamaha PCX 150",
+    nome: "Sensor IA Aerox",
+    modeloIA: "Yamaha Aerox 155",
     codigo: "MSIM004",
-    ativo: false
+    ativo: true
   },
   {
     id: 5,
@@ -123,6 +269,27 @@ const mockMSIMs: MSIM[] = [
     modeloIA: "Yamaha XTZ 250",
     codigo: "MSIM005",
     ativo: true
+  },
+  {
+    id: 6,
+    nome: "Sensor IA YBR",
+    modeloIA: "Yamaha YBR 125",
+    codigo: "MSIM006",
+    ativo: true
+  },
+  {
+    id: 7,
+    nome: "Sensor IA Fazer",
+    modeloIA: "Yamaha Fazer 250",
+    codigo: "MSIM007",
+    ativo: true
+  },
+  {
+    id: 8,
+    nome: "Sensor IA Crosser",
+    modeloIA: "Yamaha Crosser 150",
+    codigo: "MSIM008",
+    ativo: false
   }
 ];
 
@@ -158,10 +325,11 @@ export const useInspecaoStore = create<InspecaoStore>((set, get) => ({
   }),
   
   marcarComoLida: (id) => set((state) => {
+    // Atualiza apenas no estado, não persiste no localStorage
+    // Para que ao recarregar a página, as falhas voltem a aparecer
     const updatedInspecoes = state.inspecoes.map(i => 
       i.id === id ? { ...i, lida: true } : i
     );
-    localStorage.setItem('inspecoes', JSON.stringify(updatedInspecoes));
     return { inspecoes: updatedInspecoes };
   }),
   
